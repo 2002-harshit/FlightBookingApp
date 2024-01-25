@@ -1,0 +1,68 @@
+@model FlightBookingApp.Models.Customer
+
+@{
+    ViewData["Title"] = "Login";
+}
+
+@if (ViewBag.ErrorMessage != null)
+{
+    <div class="alert alert-danger">
+        @ViewBag.ErrorMessage
+    </div>
+}
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger">
+        @TempData["ErrorMessage"]
+    </div>
+}
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["SuccessMessage"]
+    </div>
+}
+@* @section BodyClass { *@
+@*     <script type="text/javascript"> *@
+@*         $(document).ready(function () { *@
+@*             console.log("hello"); *@
+@*             $('body').addClass('login-register-bg'); *@
+@*         }); *@
+@*     </script> *@
+@* } *@
+
+<h1>Login</h1>
+
+<br />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Login" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Password" class="control-label"></label>
+                <input asp-for="Password" class="form-control" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <br/>
+            <div class="form-group">
+                <input type="submit" value="Login" class="btn btn-primary" />
+                 <a style="background-color: #0c63e4" class="btn btn-secondary" href="@Url.Action("Register", "Customer")">Register</a>
+            </div>
+            
+            
+        </form>
+    </div>
+</div>
+@* *@
+@* <div> *@
+@*     <a asp-action="Index">Back to List</a> *@
+@* </div> *@
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

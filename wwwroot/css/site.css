@@ -1,0 +1,57 @@
+html {
+  font-size: 20px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+/*.login-register-bg*/
+/*{*/
+/*  background-image: url("../login_bg.png");*/
+/*  background-size: cover;*/
+/*  background-repeat: no-repeat;*/
+/*  background-attachment: fixed;*/
+/*  background-position: center;*/
+/*}*/
+
+/*html, body {*/
+/*  height: 100%;*/
+/*  margin: 0;*/
+/*  padding: 0;*/
+/*}*/
+/*.login-register-bg {*/
+/*  position: relative;*/
+/*  overflow: hidden;*/
+/*}*/
+
+/*.login-register-bg::before {*/
+/*  content: '';*/
+/*  position: absolute;*/
+/*  top: 0;*/
+/*  right: 0;*/
+/*  bottom: 0;*/
+/*  left: 0;*/
+/*  background-image: url("../login_bg.png");*/
+/*  !*background-size: cover;*!*/
+/*  background-repeat: no-repeat;*/
+/*  background-attachment: fixed;*/
+/*  background-position: center;*/
+/*  filter: blur(5px); !* Adjust the blur value as needed *!*/
+/*  z-index: -1;*/
+/*}*/

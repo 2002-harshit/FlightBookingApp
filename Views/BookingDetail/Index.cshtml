@@ -1,0 +1,102 @@
+@model IEnumerable<FlightBookingApp.Models.Bookingdetail>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "_Layout";
+    
+    if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success">
+            @TempData["SuccessMessage"]
+        </div>
+    }
+    
+    if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger">
+            @TempData["ErrorMessage"]
+        </div>
+    }
+}
+
+<h1>Your Bookings</h1>
+@if (Model.Any())
+{
+    <table class="table">
+        <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Bookingid)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Flightid)
+            </th>
+            @* <th> *@
+            @*     @Html.DisplayNameFor(model => model.Customerid) *@
+            @* </th> *@
+            <th>
+                @Html.DisplayNameFor(model => model.Bookingdate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Noofpassengers)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Totalcost)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Seatnumbers)
+            </th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Bookingid)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Flightid)
+                </td>
+                @* <td> *@
+                @*     @Html.DisplayFor(modelItem => item.Customerid) *@
+                @* </td> *@
+                <td>
+                    @Html.DisplayFor(modelItem => item.Bookingdate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Noofpassengers)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Totalcost)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Seatnumbers)
+                </td>
+                <td>
+                    @* @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) | *@
+                    @* @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) | *@
+                    @* @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ }) *@
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}
+else
+{
+<div>
+    Aah!! Seems you have new booking, Book Now!!
+</div>
+}
+
+<br/>
+<a style="background-color: #0c63e4" class="btn btn-secondary nav-link text-dark"  href="@Url.Action("Book", "BookingDetail")">Book Flight</a>
+

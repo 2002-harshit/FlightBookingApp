@@ -1,0 +1,120 @@
+@model IEnumerable<FlightBookingApp.Models.Flight>
+
+@{
+    ViewData["Title"] = "Index";
+    
+    if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success">
+            @TempData["SuccessMessage"]
+        </div>
+    }
+    
+    if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger">
+            @TempData["ErrorMessage"]
+        </div>
+    }
+}
+
+<h1>All Flights</h1>
+
+<p>
+    <a style="background-color: #4CAF50;" class="btn btn-secondary" href="@Url.Action("Add", "Flight")">Add</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            @* <th> *@
+            @*     @Html.DisplayNameFor(model => model.Flightid) *@
+            @* </th> *@
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Source)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Destination)
+            </th>
+            @* <th> *@
+            @*     @Html.DisplayNameFor(model => model.Departuretime) *@
+            @* </th> *@
+            @* <th> *@
+            @*     @Html.DisplayNameFor(model => model.Arrivaltime) *@
+            @* </th> *@
+            <th>
+                @Html.DisplayNameFor(model => model.Rate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Capacity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Currentlybookedseats)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Code)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            @* <td> *@
+            @*     @Html.DisplayFor(modelItem => item.Flightid) *@
+            @* </td> *@
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Source)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Destination)
+            </td>
+            @* <td> *@
+            @*     @Html.DisplayFor(modelItem => item.Departuretime) *@
+            @* </td> *@
+            @* <td> *@
+            @*     @Html.DisplayFor(modelItem => item.Arrivaltime) *@
+            @* </td> *@
+            <td>
+                @Html.DisplayFor(modelItem => item.Rate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Capacity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Currentlybookedseats)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Code)
+            </td>
+            <td>
+                
+                <a style="background-color: #4CAF50;" class="btn btn-secondary" href="@Url.Action("Edit", "Flight",new{id=item.Flightid})">Edit</a>
+                <a style="background-color: #0c63e4" class="btn btn-secondary" href="@Url.Action("Details", "Flight",new {id=item.Flightid})">Details</a>
+                @{
+                    if (!item.Status.ToLower().Equals("Cancelled".ToLower()))
+                    {
+                        <a style="background-color: orangered" class="btn btn-secondary" href="@Url.Action("Cancel", "Flight",new {id=item.Flightid})">Cancel</a>
+                        
+                    }
+                }
+                <a style="background-color: red" class="btn btn-secondary" href="@Url.Action("Delete", "Flight",new {id=item.Flightid})">Delete</a>
+                @* @Html.ActionLink("Edit", "Edit", new {  id=item.Flightid }) | *@
+                @* @Html.ActionLink("Details", "Details", new { id=item.Flightid }) | *@
+                @* @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ }) *@
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

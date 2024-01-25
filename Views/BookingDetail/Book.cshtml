@@ -1,0 +1,85 @@
+@model FlightBookingApp.Models.Bookingdetail
+
+@{
+    ViewData["Title"] = "Book";
+}
+
+<h1>Book a ticket</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Book" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Source" class="control-label">Source</label>
+                <select asp-for="Source" class="form-control">
+                    <option value="">Select Source</option>
+                    @foreach(var source in ViewBag.SourceList)
+                    {
+                        <option value="@source">@source</option>
+                    }
+                </select>
+                <span asp-validation-for="Source" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Destination" class="control-label">Destination</label>
+                <select asp-for="Destination" class="form-control">
+                    <option value="">Select Destination</option>
+                    @foreach(var destination in ViewBag.DestinationList)
+                    {
+                        <option value="@destination">@destination</option>
+                    }
+                </select>
+                <span asp-validation-for="Source" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DepartureDate" class="control-label">Departure Date</label>
+                <input asp-for="DepartureDate" type="date" class="form-control" />
+                <span asp-validation-for="DepartureDate" class="text-danger"></span>
+            </div>
+            
+            <div class="form-group">
+                <label asp-for="Noofpassengers" class="control-label"></label>
+                <input asp-for="Noofpassengers" class="form-control" />
+                <span asp-validation-for="Noofpassengers" class="text-danger"></span>
+            </div>
+            
+            <br/>
+            <div class="form-group">
+                <input type="submit" value="Find" class="btn btn-primary" />
+            </div>
+            <br/>
+        </form>
+    </div>
+    <br/>
+    <div>
+        @if (ViewBag.FlightList != null && ViewBag.FlightList.Count > 0)
+        {
+            <h2>Available Flights</h2>
+            @foreach (var flight in ViewBag.FlightList as List<FlightBookingApp.Models.Flight>)
+            {
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="selectedFlight" id="flight-@flight.Flightid" value="@flight.Flightid">
+                    <label class="form-check-label" for="flight-@flight.Flightid">
+                        @flight.Name - @flight.Source to @flight.Destination, Departure: @flight.Departuretime.ToString("g")
+                    </label>
+                </div>
+                <form asp-action="ConfirmBooking" method="post">
+                    <input type="hidden" name="SelectedFlightId" value="@flight.Flightid" />
+                    <input type="hidden" name="NumberOfPassengers" value="@Model.Noofpassengers" />
+                    <button type="submit" class="btn btn-primary">Book This Flight</button>
+                </form>
+                <br/>
+            }
+        }
+        else if (ViewBag.FlightList != null)
+        {
+            <p>No flights available for the selected criteria.</p>
+        }
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

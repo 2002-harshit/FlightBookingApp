@@ -1,0 +1,40 @@
+@{
+    Layout = "Admin_Layout";
+}
+
+@{
+    if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success">
+            @TempData["SuccessMessage"]
+        </div>
+    }
+    if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger">
+            @TempData["ErrorMessage"]
+        </div>
+    }
+}
+
+<div style="padding: 20px;">
+    <div style="margin-bottom: 20px;">
+        <h2>Flight Operations</h2>
+        <div style="display: flex; gap: 10px;">
+            <a class="btn btn-secondary nav-link text-dark" style="background-color: #4CAF50;" href="@Url.Action("Add", "Flight")">Create a Flight</a>
+            <a class="btn btn-secondary nav-link text-dark" style="background-color: yellow;" href="@Url.Action("Index", "Flight")">List all Flights</a>
+            @* <a class="btn btn-secondary nav-link text-dark" style="background-color: #FF9800;" href="@Url.Action("Index", "Flight")">Edit a Flight</a> *@
+            @* <a class="btn btn-secondary nav-link text-dark" style="background-color: #f44336;" href="@Url.Action("Cancel", "Flight")">Cancel a Flight</a> *@
+            <a class="btn btn-secondary nav-link text-dark" style="background-color: #2196F3;" href="@Url.Action("Search", "Customer")">Search a Flight</a>
+        </div>
+    </div>
+
+    <div>
+        <h2>User Operations</h2>
+        <div style="display: flex; gap: 10px;">
+            <a class="btn btn-secondary nav-link text-dark" style="background-color: #4CAF50;" href="@Url.Action("Add", "Customer")">Add a User</a>
+            @* <a class="btn btn-secondary nav-link text-dark" style="background-color: #673AB7;" href="@Url.Action("Delete",)">Delete a User</a> *@
+            <a class="btn btn-secondary nav-link text-dark" style="background-color: yellow;" href="@Url.Action("AllUsers", "Customer")">List All Users</a>
+        </div>
+    </div>
+</div>
